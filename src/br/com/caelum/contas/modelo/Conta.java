@@ -4,8 +4,8 @@ public class Conta {
 
 	double saldo;
 	String titular;
-	double numero;
-	double agencia;
+	int numero;
+	String agencia;
 
 	public void saca(double valor) {
 		this.saldo -= valor;
@@ -23,24 +23,33 @@ public class Conta {
 		this.titular = titular;
 	}
 	
-	public double getNumero() {
+	public int getNumero() {
 		return this.numero;
 	}
 
-	public void setNumeror(double numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 	
-	public double getAgencia() {
+	public String getAgencia() {
 		return this.agencia;
 	}
 
-	public void setAgencia(double agencia) {
+	public void setAgencia(String agencia) {
 		this.agencia = agencia;
 	}
 	
 	public double getSaldo() {
 		return this.saldo;
+	}
+	
+	public String getTipo(){
+		return "Conta";
+	}
+	
+	public void transfere(double valor, Conta conta){
+		this.saca(valor);
+		conta.deposita(valor);
 	}
 	
 }

@@ -1,6 +1,8 @@
 package br.com.caelum.contas;
 
 import br.com.caelum.contas.modelo.Conta;
+import br.com.caelum.contas.modelo.ContaCorrente;
+import br.com.caelum.contas.modelo.ContaPoupanca;
 import br.com.caelum.javafx.api.util.Evento;
 
 public class ManipuladorDeContas {
@@ -8,20 +10,68 @@ public class ManipuladorDeContas {
 	Conta conta;
 	
 	public void criaConta(Evento evento) { 
-		this.conta = new Conta();
-		this.conta.setTitular("Felipe Ribeiro");
-		this.conta.setAgencia(2345678);
-		this.conta.setNumeror(987654321);
+		
+		String tipo = evento.getSelecionadoNoRadio("tipo");
+		
+		if(tipo.equals("Conta Corrente")){
+			this.conta = new ContaCorrente();
+		}
+		
+		if(tipo.equals("Conta Poupanca")){
+			this.conta = new ContaPoupanca();
+		}
+		
+		this.conta.setTitular(evento.getString("titular"));
+		
+		this.conta.setAgencia(evento.getString("agencia"));
+		
+		this.conta.setNumero(evento.getInt("numero"));
 	}
 	
 	public void deposita(Evento evento) {
-		double valorDepositado = evento.getDouble("valor");
+		double valorDepositado = evento.getDouble("valorOperacao");
 		this.conta.deposita(valorDepositado);		
 	}
 	
 	public void saca(Evento evento) {
-		double valorDepositado = evento.getDouble("valor");
-		this.conta.saca(valorDepositado);		
+		
+		double valorDepositado = evento.getDouble("valorOperacao");
+		
+		if(this.conta.getTipo().equals("Conta Corrente")){
+			this.conta.saca(valorDepositado + 0.10);
+		}
+		
+		if(this.conta.getTipo().equals("Conta Poupanca")){
+			this.conta.saca(valorDepositado);
+		}				
 	}
+	
+	public void transfere(Evento evento){
+		Conta destino = (Conta) evento.getSelecionadoNoCombo("destino");
+		conta.transfere(evento.getDouble("valorTransferencia"), destino);		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -6,8 +6,8 @@ import br.com.caelum.javafx.api.main.SistemaBancario;
 
 public class testContas {
 	
-	public static void main (String[] args){		
-		SistemaBancario.mostraTela(false);
+	public static void main(String[] args){		
+		SistemaBancario.mostraTela(true);
 		//TelaDeContas.main(args);
 	}
 

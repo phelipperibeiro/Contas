@@ -17,15 +17,21 @@ public class ManipuladorDeContas {
 			this.conta = new ContaCorrente();
 		}
 		
-		if(tipo.equals("Conta Poupanca")){
+		if(tipo.equals("Conta Poupança")){
 			this.conta = new ContaPoupanca();
 		}
 		
-		this.conta.setTitular(evento.getString("titular"));
+		//this.conta.setTitular(evento.getString("titular"));
+
+		//this.conta.setAgencia(evento.getString("agencia"));
+
+		//this.conta.setNumero(evento.getInt("numero"));
 		
-		this.conta.setAgencia(evento.getString("agencia"));
+        this.conta.setTitular("felipe");
 		
-		this.conta.setNumero(evento.getInt("numero"));
+		this.conta.setAgencia("213516");
+		
+		this.conta.setNumero(456);
 	}
 	
 	public void deposita(Evento evento) {

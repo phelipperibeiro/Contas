@@ -8,10 +8,20 @@ public abstract class Conta {
 	String agencia;
 
 	public void saca(double valor) {
+
+		if (valor < 0) {
+			throw new IllegalArgumentException("Você tentou sacar valor negativo");
+		}
+
 		this.saldo -= valor;
 	}
 
 	public void deposita(double valor) {
+
+		if (valor < 0) {
+			throw new IllegalArgumentException("Você tentou depositar valor negativo");
+		}
+
 		this.saldo += valor;
 	}
 
@@ -22,7 +32,7 @@ public abstract class Conta {
 	public void setTitular(String titular) {
 		this.titular = titular;
 	}
-	
+
 	public int getNumero() {
 		return this.numero;
 	}
@@ -30,7 +40,7 @@ public abstract class Conta {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
+
 	public String getAgencia() {
 		return this.agencia;
 	}
@@ -38,16 +48,16 @@ public abstract class Conta {
 	public void setAgencia(String agencia) {
 		this.agencia = agencia;
 	}
-	
+
 	public double getSaldo() {
 		return this.saldo;
 	}
-	
+
 	public abstract String getTipo();
-	
-	public void transfere(double valor, Conta conta){
+
+	public void transfere(double valor, Conta conta) {
 		this.saca(valor);
 		conta.deposita(valor);
 	}
-	
+
 }
